@@ -40,7 +40,7 @@
 
 An overview [here](http://blog.steveklabnik.com/posts/2011-07-03-nobody-understands-rest-or-http#resources).
 
-Definition:
+Definition from [Fielding's dissertation](https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm):
 
 >The key abstraction of information in REST is a resource. Any information that can be named can be a resource: a document or image, a temporal service (e.g. "today's weather in Los Angeles"), a collection of other resources, a non-virtual object (e.g. a person), and so on. In other words, any concept that might be the target of an author's hypertext reference must fit within the definition of a resource. A resource is a conceptual mapping to a set of entities, not the entity that corresponds to the mapping at any particular point in time.
 
