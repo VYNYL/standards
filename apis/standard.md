@@ -4,41 +4,41 @@
 
 - [APIs](#apis)
 	- [Endpoint Design](#endpoint-design)
-		- [[Resources](http://restful-api-design.readthedocs.io/en/latest/resources.html)](#resourceshttprestful-api-designreadthedocsioenlatestresourceshtml)
-			- [Collections](#collections)
-			- [Relationships (Sub Resources)](#relationships-sub-resources)
+		- [Resources](#resources)
+		- [Collections](#collections)
+			- [Pagination](#pagination)
+		- [Relationships (Sub Resources)](#relationships-sub-resources)
+		- [Custom Resource Endpoints](#custom-resource-endpoints)
 		- [HTTP Methods (aka HTTP verbs)](#http-methods-aka-http-verbs)
 			- [`GET`](#get)
 			- [`POST`](#post)
 			- [`PUT`](#put)
 			- [`PATCH`](#patch)
 			- [`DELETE`](#delete)
-	- [Concerns for public APIs](#concerns-for-public-apis)
+	- [Concerns for External APIs](#concerns-for-external-apis)
 		- [Auto-incrementing ids](#auto-incrementing-ids)
-	- [[Content Representations](http://restful-api-design.readthedocs.io/en/latest/resources.html#representations)](#content-representationshttprestful-api-designreadthedocsioenlatestresourceshtmlrepresentations)
+	- [Content Representations](#content-representations)
+		- [Content-types](#content-types)
 	- [Transformation Layers](#transformation-layers)
 		- [Private to Public](#private-to-public)
 		- [Public to Private](#public-to-private)
 		- [Links (HATEOAS or Hypermdedia Linking)](#links-hateoas-or-hypermdedia-linking)
-	- [Relationships](#relationships)
 	- [Authentication](#authentication)
 	- [Versioning](#versioning)
-	- [Pagination](#pagination)
 	- [Documentation](#documentation)
 	- [Testing](#testing)
 		- [Seeds](#seeds)
 	- [Status Codes](#status-codes)
-	- [Custom Endpoints](#custom-endpoints)
-	- [Content-types](#content-types)
 	- [Resources](#resources)
-	- [Glossary](#glossary)
 
 <!-- /TOC -->
 
 
 ## Endpoint Design
 
-### [Resources](http://restful-api-design.readthedocs.io/en/latest/resources.html)
+### Resources
+
+An overview [here](http://blog.steveklabnik.com/posts/2011-07-03-nobody-understands-rest-or-http#resources).
 
 Definition:
 
@@ -55,7 +55,7 @@ Notice that we are using the plural form of the entity, `user`, to describe the 
 the easy addition of relations to the endpoint:
 
 
-#### Collections
+### Collections
 
 Collections are homogeneous groupings (arrays) of resources (entities).  Common actions on a collection are:
 
@@ -66,8 +66,12 @@ Collections are homogeneous groupings (arrays) of resources (entities).  Common 
 If you need to "include" relationships for entities in a collection, use the `include` parameter in the request uri:
 `GET /users?include=posts`.  Be careful that you do not run a query for each include since that will result in a horrible [N+1](https://secure.phabricator.com/book/phabcontrib/article/n_plus_one/) mess.  Most ORMs have the ability to include relationship entities. Eloquent has the `with()` method as well as properties that will load a relation only once: `$user->posts` will load the `posts` for the `user` only once but `$user->posts()` will load them every time.
 
+#### Pagination
 
-#### Relationships (Sub Resources)
+@todo
+
+
+### Relationships (Sub Resources)
 
 Relationships are connections between entities.  For example, `GET /users/:id/posts` would return a list of all the posts for a user.  Common actions on a relationship are:
 
@@ -81,6 +85,10 @@ Do **NOT** format relationship endpoints in this manner `GET /posts/get-by-user/
 Do **NOT** access a single entity through a relationship: `GET /users/:id/posts/:id`.  Instead, go directly to the endpoint
 for that entity: `GET /posts/:id`.
 
+
+### Custom Resource Endpoints
+
+@todo
 
 
 ### HTTP Methods (aka HTTP verbs)
@@ -138,48 +146,106 @@ Examples:
 * `DELETE /users/:id/posts/:id` will remove the relationship between the post and user.
 
 
-## Concerns for public APIs
+## Concerns for External APIs
 
 ### Auto-incrementing ids
 
-public vs private api
-UUIDs
+Auto incrementing ids can be easily manipulated by users.  If your API is going to be used by external users, consider using UUIDs for entity ids.
 
-## [Content Representations](http://restful-api-design.readthedocs.io/en/latest/resources.html#representations)
+
+
+## Content Representations
+
+Overview [here](http://blog.steveklabnik.com/posts/2011-07-03-nobody-understands-rest-or-http#representations).  Representations determine the form (content-type) in which the resource is returned.  
+
+### Content-types
+
+`application/json` is our default content type unless there is a pressing & substantial project need beyond developer preference.
 
 
 ## Transformation Layers
 
-Transformers allow for the API to be decoupled from the backend code implementation.  They also enable the combining of multiple entities and
+Transformers allow for the API to be decoupled from the backend code implementation.  They also enable the combining of multiple entities into one resource.  
 
 ### Private to Public
 
+Transformation example from the backend to the frontend:
+
+```php
+<?php
+
+return [
+  'name' => $user->first_name . ' ' . $user->last_name,
+  'role' => $user->role->name,
+]
+
+```
+
 ### Public to Private
+
+Transformation example from the frontend to the backend:
+
+```php
+<?php
+
+$name = explode(' ', array_get($payload, 'name'));
+
+return [
+  'first_name' => $name[0],
+  'last_name' => $name[1],
+];
+```
 
 
 ### Links (HATEOAS or Hypermdedia Linking)
 
-## Relationships
+Links to other resources in a REST API is an integral part of its architectural concept.  However,
+for our projects it is not always necessary to implement this feature of the REST architecture depending on whether external
+people will use it and the size of said project.  That decision will need to be decided by the projects lead or a senior developer.
+
+
+```php
+<?php
+
+return [
+  'name' => $user->first_name . ' ' . $user->last_name,
+  'role' => $user->role->name,
+  'links' => [
+      'self' => "/users/$user->id",
+      'posts' => "/users/$user->id/posts"
+  ],
+]
+
+```
+
+
 
 ## Authentication
 
+@todo
+
+
 ## Versioning
 
-## Pagination
+@todo
+
 
 ## Documentation
 
+@todo
+
+
 ## Testing
+
+@todo
 
 ### Seeds
 
+@todo
+
 ## Status Codes
 
-## Custom Endpoints
-
-## Content-types
-
-`application/json` is our default content type unless there is a pressing & substantial project need beyond developer preference.
+@todo
 
 
 ## Resources
@@ -189,10 +255,3 @@ Transformers allow for the API to be decoupled from the backend code implementat
 * [Rest Cookbook](http://restcookbook.com/)
 * [Restful Api Design Site](http://restful-api-design.readthedocs.io/en/latest/intro.html)
 * [Nobody Understand REST](http://blog.steveklabnik.com/posts/2011-07-03-nobody-understands-rest-or-http)
-
-
-
-## Glossary
-
-
-* *Transformer*:
