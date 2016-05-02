@@ -1,5 +1,40 @@
 # APIs
 
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [APIs](#apis)
+	- [Endpoint Design](#endpoint-design)
+		- [[Resources](http://restful-api-design.readthedocs.io/en/latest/resources.html)](#resourceshttprestful-api-designreadthedocsioenlatestresourceshtml)
+			- [Collections](#collections)
+			- [Relationships (Sub Resources)](#relationships-sub-resources)
+		- [HTTP Methods (aka HTTP verbs)](#http-methods-aka-http-verbs)
+			- [`GET`](#get)
+			- [`POST`](#post)
+			- [`PUT`](#put)
+			- [`PATCH`](#patch)
+			- [`DELETE`](#delete)
+	- [Concerns for public APIs](#concerns-for-public-apis)
+		- [Auto-incrementing ids](#auto-incrementing-ids)
+	- [[Content Representations](http://restful-api-design.readthedocs.io/en/latest/resources.html#representations)](#content-representationshttprestful-api-designreadthedocsioenlatestresourceshtmlrepresentations)
+	- [Transformation Layers](#transformation-layers)
+		- [Private to Public](#private-to-public)
+		- [Public to Private](#public-to-private)
+		- [Links (HATEOAS or Hypermdedia Linking)](#links-hateoas-or-hypermdedia-linking)
+	- [Relationships](#relationships)
+	- [Authentication](#authentication)
+	- [Versioning](#versioning)
+	- [Pagination](#pagination)
+	- [Documentation](#documentation)
+	- [Testing](#testing)
+		- [Seeds](#seeds)
+	- [Status Codes](#status-codes)
+	- [Custom Endpoints](#custom-endpoints)
+	- [Content-types](#content-types)
+	- [Resources](#resources)
+	- [Glossary](#glossary)
+
+<!-- /TOC -->
+
 
 ## Endpoint Design
 
@@ -29,7 +64,7 @@ Collections are homogeneous groupings (arrays) of resources (entities).  Common 
 * `PUT /users`: replace the entire collection.  Requires a new collection to be sent in the body
 
 If you need to "include" relationships for entities in a collection, use the `include` parameter in the request uri:
-`GET /users?include=posts`.  Be careful that you do not run a query for each include since that will result in a horrible [N+1](https://secure.phabricator.com/book/phabcontrib/article/n_plus_one/) mess.  Most ORMs have the ability to include relationship entities. Eloquent has the `with()` method as well as properties that will load a relation only once: `$user->posts` will load the `posts` for the `user` only once but `$user->posts()` will load them every time. 
+`GET /users?include=posts`.  Be careful that you do not run a query for each include since that will result in a horrible [N+1](https://secure.phabricator.com/book/phabcontrib/article/n_plus_one/) mess.  Most ORMs have the ability to include relationship entities. Eloquent has the `with()` method as well as properties that will load a relation only once: `$user->posts` will load the `posts` for the `user` only once but `$user->posts()` will load them every time.
 
 
 #### Relationships (Sub Resources)
@@ -37,8 +72,8 @@ If you need to "include" relationships for entities in a collection, use the `in
 Relationships are connections between entities.  For example, `GET /users/:id/posts` would return a list of all the posts for a user.  Common actions on a relationship are:
 
 * `GET /users/:id/posts`: retrieve the posts for a user
-* `POST /users`: add a new entity to the collection (you need to send a body with the request)
-* `PUT /users`: replace the entire collection.  Requires a new collection to be sent in the body
+* `PUT /users/:id/posts/:id`: link a post to a user.  
+* `DELETE /users/:id/posts/:id`: remove the post from the user.
 
 
 Do **NOT** format relationship endpoints in this manner `GET /posts/get-by-user/:id`.  Technically it would do the same thing as the above endpoint but this format is difficult to understand as well as redundant since the `GET` is implied from the HTTP Method.  If you started down this path, before long you would see developers creating endpoints such as `GET /posts/user-get-by/:id` as well as other dubious schemes.  That leads to an API that is incomprehensible.  Don't do it.
