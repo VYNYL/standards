@@ -251,7 +251,7 @@ return [
 ## Resources
 
 * Postman
-* *How to build APIs You Don't Hate*
+* [Build APIs You Won't Hate](http://www.amazon.com/dp/0692232699) by Phil Sturgeon
 * [Rest Cookbook](http://restcookbook.com/)
 * [Restful Api Design Site](http://restful-api-design.readthedocs.io/en/latest/intro.html)
 * [Nobody Understand REST](http://blog.steveklabnik.com/posts/2011-07-03-nobody-understands-rest-or-http)
