@@ -1,38 +1,38 @@
 # APIs
 
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [APIs](#apis)
-	- [Endpoint Design](#endpoint-design)
-		- [Resources](#resources)
-		- [Collections](#collections)
-			- [Pagination](#pagination)
-		- [Relationships (Sub Resources)](#relationships-sub-resources)
-		- [Custom Resource Endpoints](#custom-resource-endpoints)
-		- [HTTP Methods (aka HTTP verbs)](#http-methods-aka-http-verbs)
-			- [`GET`](#get)
-			- [`POST`](#post)
-			- [`PUT`](#put)
-			- [`PATCH`](#patch)
-			- [`DELETE`](#delete)
-	- [Concerns for External APIs](#concerns-for-external-apis)
-		- [Auto-incrementing ids](#auto-incrementing-ids)
-	- [Content Representations](#content-representations)
-		- [Content-types](#content-types)
-	- [Transformation Layers](#transformation-layers)
-		- [Private to Public](#private-to-public)
-		- [Public to Private](#public-to-private)
-		- [Links (HATEOAS or Hypermedia Linking)](#links-hateoas-or-hypermedia-linking)
-	- [Authentication](#authentication)
-	- [Versioning](#versioning)
-	- [Documentation](#documentation)
-	- [Testing](#testing)
-		- [Seeds](#seeds)
-	- [Status Codes](#status-codes)
-	- [Resources](#resources)
+- [Endpoint Design](#endpoint-design)
+  - [Resources](#resources)
+  - [Collections](#collections)
+    - [Pagination](#pagination)
+  - [Relationships (Sub Resources)](#relationships-sub-resources)
+  - [Custom Resource Endpoints](#custom-resource-endpoints)
+  - [HTTP Methods (aka HTTP verbs)](#http-methods-aka-http-verbs)
+    - [`GET`](#get)
+    - [`POST`](#post)
+    - [`PUT`](#put)
+    - [`PATCH`](#patch)
+    - [`DELETE`](#delete)
+- [Concerns for External APIs](#concerns-for-external-apis)
+  - [Auto-incrementing ids](#auto-incrementing-ids)
+- [Content Representations](#content-representations)
+  - [Content-types](#content-types)
+- [Transformation Layers](#transformation-layers)
+  - [Private to Public](#private-to-public)
+  - [Public to Private](#public-to-private)
+  - [Links (HATEOAS or Hypermedia Linking)](#links-hateoas-or-hypermedia-linking)
+- [Authentication](#authentication)
+- [Versioning](#versioning)
+- [Documentation](#documentation)
+- [Testing](#testing)
+  - [Seeds](#seeds)
+- [Status Codes](#status-codes)
+- [Resources](#resources-1)
 
-<!-- /TOC -->
-
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Endpoint Design
 
