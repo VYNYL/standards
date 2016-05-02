@@ -22,7 +22,7 @@
 	- [Transformation Layers](#transformation-layers)
 		- [Private to Public](#private-to-public)
 		- [Public to Private](#public-to-private)
-		- [Links (HATEOAS or Hypermdedia Linking)](#links-hateoas-or-hypermdedia-linking)
+		- [Links (HATEOAS or Hypermedia Linking)](#links-hateoas-or-hypermedia-linking)
 	- [Authentication](#authentication)
 	- [Versioning](#versioning)
 	- [Documentation](#documentation)
@@ -197,7 +197,7 @@ return [
 ```
 
 
-### Links (HATEOAS or Hypermdedia Linking)
+### Links (HATEOAS or Hypermedia Linking)
 
 Links to other resources in a REST API is an integral part of its architectural concept.  However,
 for our projects it is not always necessary to implement this feature of the REST architecture depending on whether external
