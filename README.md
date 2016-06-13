@@ -1,4 +1,4 @@
-# Pixel & Line Development Standards
+# Vynyl Development Standards
 
 
 
