@@ -1,5 +1,9 @@
 # Angular Unit Tests
 
+## Examples 
+
+### ES5
+
 See John Papa's [AngularJS Testing Examples](https://github.com/johnpapa/ng-patterns-testing).  You can download the 
 codebase and try out tests.  If you want to start a new codebase that utilizes this testing strategy, you can use 
 [Angular Hot Towel](https://github.com/johnpapa/generator-hottowel) to scaffold a new project for you.  Keep in mind that 
@@ -9,7 +13,10 @@ In the `src/client/app` folder in the example codebase, you will find several co
 
 In those component folders, you will find `spec.js` files for tests of controllers, route definitions, and services.  
 
-For examples from an ES2015 code base, refer to the [NG6](https://github.com/AngularClass/NG6-starter) codebase.  
+
+### ES2015 
+
+For examples in an ES2015 code base, refer to the [NG6](https://github.com/AngularClass/NG6-starter) codebase.  
 
 In the `client/app/components/` folders, you will find examples of tests.  
 
