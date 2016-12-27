@@ -24,6 +24,7 @@ This guide assumes the use of the [Sass](http://www.sass-lang.com) preprocessor,
   - [JavaScript hooks](#javascript-hooks)
   - [Comments](#comments)
 - [Syntax](#syntax)
+  - [Mixins](#mixins)
   - [Components](#components)
   - [Descendants](#descendants)
   - [Modifiers](#modifiers)
@@ -329,6 +330,10 @@ Component driven development offers several benefits when reading and writing HT
 * It helps to decouple presentation semantics from document semantics.
 
 You can think of components as custom elements that enclose specific semantics, styling, and behaviour.
+
+### Mixins
+
+Mixins should be used to DRY up your code, add clarity, or abstract complexity--in much the same way as well-named functions. Mixins that accept no arguments can be useful for this, but note that if you are not compressing your payload (e.g. gzip), this may contribute to unnecessary code duplication in the resulting styles.
 
 ### Components 
 
