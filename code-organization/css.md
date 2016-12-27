@@ -21,6 +21,7 @@ This guide assumes the use of the [Sass](http://www.sass-lang.com) preprocessor,
   - [Spacing](#spacing)
   - [Nesting](#nesting)
   - [Quotes](#quotes)
+  - [JavaScript hooks](#javascript-hooks)
   - [Comments](#comments)
 - [Syntax](#syntax)
   - [Components](#components)
@@ -280,6 +281,18 @@ Quotes are optional in CSS. You should use single quotes as it is visually clear
 }
 
 ```
+
+
+### JavaScript hooks
+
+Avoid binding to the same class in both your CSS and JavaScript. Conflating the two often leads to, at a minimum, time wasted during refactoring when a developer must cross-reference each class they are changing, and at its worst, developers being afraid to make changes for fear of breaking functionality.
+
+We recommend creating JavaScript-specific classes to bind to, prefixed with `.js-`:
+
+```html
+<button class="btn btn-primary js-request-to-book">Request to Book</button>
+```
+
 
 ### Comments
 
