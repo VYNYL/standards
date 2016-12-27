@@ -111,6 +111,7 @@ Stylesheets should be broken up into multiple [partials](http://www.sass-lang.co
 
 Variables like font stacks, colors and other theme related preferences should be grouped by concern and placed together into a `config/` folder. If supporting multiple themes each theme should have it's own `config/` folder.
 
+Prefer dash-cased variable names (e.g. `$my-variable`) over camelCased or snake_cased variable names. It is acceptable to prefix variable names that are intended to be used only within the same file with an underscore (e.g. `$_my-variable`).
 ## Formatting
 
 The following are some high level page formatting style rules.
@@ -318,6 +319,7 @@ Avoid freeform comments, instead consider using [SassDoc](http://sassdoc.com/) t
 
 ## Syntax
 
+**Use the `.scss` syntax, never the original `.sass` syntax**
 [BEM Syntax](https://css-tricks.com/bem-101): `<component-name>[--modifier-name|__descendant-name]`
 
 Component driven development offers several benefits when reading and writing HTML and CSS:
