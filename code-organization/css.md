@@ -12,7 +12,7 @@ This guide assumes the use of the [Sass](http://www.sass-lang.com) preprocessor,
   - [Rule declaration](#rule-declaration)
   - [Selectors](#selectors)
   - [Properties](#properties)
-- [File/Folder Naming](#filefolder-naming)
+- [File Naming and Structure](#file-naming-and-structure)
   - [Folder Organization](#folder-organization)
   - [Partials](#partials)
 - [Variables & Configuration](#variables--configuration)
@@ -84,7 +84,7 @@ Finally, properties are what give the selected elements of a rule declaration th
 }
 ```
 
-## File/Folder Naming
+## File Naming and Structure
 
 ### Folder Organization
 
