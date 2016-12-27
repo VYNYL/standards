@@ -17,6 +17,7 @@ This guide assumes the use of the [Sass](http://www.sass-lang.com) preprocessor,
   - [Partials](#partials)
 - [Variables & Configuration](#variables--configuration)
 - [Formatting](#formatting)
+  - [ID selectors](#id-selectors)
   - [Spacing](#spacing)
   - [Nesting](#nesting)
   - [Quotes](#quotes)
@@ -112,6 +113,14 @@ Variables like font stacks, colors and other theme related preferences should be
 ## Formatting
 
 The following are some high level page formatting style rules.
+
+
+### ID selectors
+
+While it is possible to select elements by ID in CSS, it should generally be considered an anti-pattern. ID selectors introduce an unnecessarily high level of [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) to your rule declarations, and they are not reusable.
+
+For more on this subject, read [CSS Wizardry's article](http://csswizardry.com/2014/07/hacks-for-dealing-with-specificity/) on dealing with specificity.
+
 
 ### Spacing
 
