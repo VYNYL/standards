@@ -27,7 +27,7 @@ Guidelines for Typescript language
 1. Use Single quotes for strings.
 
 ## Diagnostic and Error Messages
-1. Use a period at the end of a sentense.
+1. Use a period at the end of a sentence.
 2. Use indfinite articles for indefinite entities.
 3. Definite entities should be named ("User was not updated", "Role could not be applied to User").
 4. When stating a rule, the subject should be in the singular ("A password cannot be shorter than 3 characters" instead of "Passwords cannot be ...")
