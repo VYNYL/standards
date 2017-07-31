@@ -25,6 +25,7 @@ Guidelines for Typescript language
 
 ## Strings
 1. Use Single quotes for strings.
+2. Prefer template strings over concat strings eg ``My name is ${name}`` vs `'My Name is ' + name`
 
 ## Diagnostic and Error Messages
 1. Use a period at the end of a sentence.
