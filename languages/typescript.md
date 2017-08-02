@@ -48,3 +48,13 @@ Guidelines for Typescript language
 7. Else goes on the same line as the closing curly brace.
 8. Four(4) spaces per indentation.
 9. Classes end with new line character.
+10. Ternary operators never fail or succeed to another ternary eg `true ? '1' : true2 ? '2' : ''`
+11. If you need to drop to a new line, opeartors will stay on previous line eg 
+```
+    this.isTrue(true) ?
+        true :
+        false
+
+    return this && this.isTrue() &&
+        !this.isFalse()
+```
