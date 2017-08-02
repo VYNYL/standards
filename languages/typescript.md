@@ -50,6 +50,7 @@ Guidelines for Typescript language
 9. Classes end with new line character.
 10. Ternary operators never fail or succeed to another ternary eg `true ? '1' : true2 ? '2' : ''`
 11. If you need to drop to a new line, opeartors will stay on previous line eg 
+
         ```
             this.isTrue(true) ?
                 true :
